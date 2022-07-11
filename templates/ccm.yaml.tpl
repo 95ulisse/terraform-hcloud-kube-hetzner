@@ -19,6 +19,10 @@ spec:
             - "--feature-gates=LegacyNodeRoleBehavior=false" 
 %{ endif ~}
           env:
+%{ if using_klipper_lb ~}
+            - name: "HCLOUD_LOAD_BALANCERS_ENABLED"
+              value: "false"
+%{ endif ~}
             - name: "HCLOUD_LOAD_BALANCERS_LOCATION"
               value: "${default_lb_location}"
             - name: "HCLOUD_LOAD_BALANCERS_USE_PRIVATE_IP"
